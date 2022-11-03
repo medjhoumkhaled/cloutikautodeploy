@@ -20,6 +20,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy in remote com webserver'){
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'com-server', keyFileVariable: 'COM_prevatefile')]) {
+                    sh 'scp -oStrictHostKeyChecking=no -i ${COM_prevatefile} jktest.html root@login.cloutik.com:/var/www/html/cloutik/'
+                }        
+            }
+        }
         
         stage('Deploy in remote us webserver'){
             steps {
@@ -36,15 +44,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy in remote com webserver'){
-            steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'com-server', keyFileVariable: 'COM_prevatefile')]) {
-                    sh 'scp -oStrictHostKeyChecking=no -i ${COM_prevatefile} jktest.html root@login.cloutik.com:/var/www/html/cloutik/'
-                }        
-            }
-        }
-        
     }
 }
 
