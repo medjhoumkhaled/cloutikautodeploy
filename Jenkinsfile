@@ -20,14 +20,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy in remote com webserver'){
-            steps {
-                sshagent(['com-server']) {
-                    sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.com:/var/www/html/cloutik/'
-                }        
-            }
-        }
         
         stage('Deploy in remote us webserver'){
             steps {
@@ -42,6 +34,14 @@ pipeline {
                 sshagent(['asia-server']) {
                     sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.asia:/var/www/html/cloutik/'
                 }
+            }
+        }
+    
+        stage('Deploy in remote com webserver'){
+            steps {
+                sshagent(['com-server']) {
+                    sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.com:/var/www/html/cloutik/'
+                }        
             }
         }
     }
