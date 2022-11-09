@@ -9,7 +9,7 @@ pipeline {
         stage('Data settings'){
             steps {
                 sh 'chmod +x updateIndexVersion.sh'
-                sh './updateIndexVersion.sh ${DOCKER_TAG} jktest.html'
+                sh './updateIndexVersion.sh ${DOCKER_TAG} cloutik/jktest.html'
             }
         }
         
