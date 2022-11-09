@@ -23,7 +23,7 @@ pipeline {
         
         stage('Deploy in remote us webserver'){
             steps {
-                sshagent(['us-server']) {
+                sshagent(['eu-server']) {
                     sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.us:/var/www/html/cloutik/'
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
         
         stage('Deploy in remote asia webserver'){
             steps {
-                sshagent(['asia-server']) {
+                sshagent(['eu-server']) {
                     sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.asia:/var/www/html/cloutik/'
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
     
         stage('Deploy in remote com webserver'){
             steps {
-                sshagent(['com-server']) {
+                sshagent(['eu-server']) {
                     sh 'scp -oStrictHostKeyChecking=no jktest.html root@login.cloutik.com:/var/www/html/cloutik/'
                 }        
             }
